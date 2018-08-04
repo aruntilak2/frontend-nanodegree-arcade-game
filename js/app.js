@@ -6,7 +6,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = 10;
+    this.x = 100;
     this.y = 100;
 };
 
@@ -21,6 +21,9 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Enemy.prototype.handleInput = function(dt) {
 };
 
 
@@ -39,8 +42,8 @@ const Player = function (){
    Player.prototype.render =function(){
        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
    };
-   Player.prototype.handleInput = function(dt) {
-};
+//    Player.prototype.handleInput = function(dt) {
+// };
 
 
 // Now instantiate your objects.
@@ -49,8 +52,13 @@ var enemy2 = new Enemy;
 var enemy3 = new Enemy;
 
 // Place all enemy objects in an array called allEnemies
-
-var allEnemies = [];
+var enemy = new Enemy;
+// var allEnemies = [new Enemy()];
+var allEnemies = [enemy1, enemy2, enemy3];
+// allEnemies.render();
+// Enemy.prototype.render = function() {
+//     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+// };
 
 // Place the player object in a variable called player
 var player = new Player;
@@ -63,8 +71,10 @@ document.addEventListener('keyup', function(e) {
         38: 'up',
         39: 'right',
         40: 'down'
+
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+    Player.handleInput(allowedKeys[e.keyCode]);
 });
+
 
