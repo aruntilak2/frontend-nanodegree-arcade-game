@@ -42,14 +42,46 @@ const Player = function (){
    Player.prototype.render =function(){
        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
    };
-//    Player.prototype.handleInput = function(dt) {
-// };
+   Player.prototype.handleInput = function(dt) {
+       console.log(dt);
+       if (dt == "left"){
+           this.x -=101;           
+       }
+       else if (dt == "right"){
+        this.x +=101;  
+       }
+       else if ( dt == "up"){
+           this.y -= 100;
+       }
+       else {
+           this.y +=100;
+       }
+    //    switch (dt) {
+    //     case 'left':
+    //       this.x >= this.h_step ? this.x -= this.h_step : this.x -= 20;
+    //       break;
+    //     case 'right':
+    //       this.x <= (this.h_step * 3) ? this.x += this.h_step : this.x += 20;
+    //       break;
+    //     case 'up':
+    //       this.y -= this.v_step;
+    //       if(this.y <= 50) {
+    //         console.log('win!');
+    //         this.x = 202;
+    //         this.y = 404;
+    //       }
+    //       break;
+    //     case 'down':
+    //       this.y <= (this.v_step * 4) ? this.y += this.v_step : this.y += 0;
+    //       break;
+    //   }
+};
 
 
 // Now instantiate your objects.
-var enemy1 = new Enemy;
-var enemy2 = new Enemy;
-var enemy3 = new Enemy;
+var enemy1 = new Enemy();
+var enemy2 = new Enemy();
+var enemy3 = new Enemy();
 
 // Place all enemy objects in an array called allEnemies
 var enemy = new Enemy;
@@ -74,7 +106,11 @@ document.addEventListener('keyup', function(e) {
 
     };
 
-    Player.handleInput(allowedKeys[e.keyCode]);
+    // Player.handleInput(allowedKeys[e.keyCode]);
+    if(allowedKeys[e.keyCode]) {
+        player.handleInput(allowedKeys[e.keyCode]);
+      }
+//   });
 });
 
 
