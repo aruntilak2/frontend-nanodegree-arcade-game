@@ -49,7 +49,8 @@ const Player = function (){
             if (direction == "left" && this.x >= -101)
             {
                 this.x -=101;   
-                console.log (this.x); 
+                console.log ('Player at = '+this.x); 
+                console.log('Enemy X = '+enemy1.x,', Enemy Y= '+ enemy1.y);
                 if (this.x <100){
                     this.x=0;
                 }
@@ -57,14 +58,16 @@ const Player = function (){
             }
             else if (direction == "right"&& this.x <= 505){
                 this.x +=101;  
-                console.log (this.x);  
+                console.log ('Player at = '+this.x); 
+                console.log('Enemy X = '+enemy1.x,', Enemy Y= '+ enemy1.y);
                 if (this.x > 404){
                     this.x=404;
                 }
             }
             else if ( direction == "up" && this.y >= -101){
                 this.y -= 100;
-                console.log (this.y);  
+                console.log ('Player at = '+this.y); 
+                console.log('Enemy X = '+enemy1.x,', Enemy Y= '+ enemy1.y);
                 if (this.y < -60){
                     this.y= -60;
                 }
@@ -72,7 +75,8 @@ const Player = function (){
             else {
                 // if (direction == "down" && this.y <= 101){
                     this.y += 100;
-                    console.log (this.y);
+                    console.log ('Player at = '+this.y); 
+                    console.log('Enemy X = '+enemy1.x,', Enemy Y= '+ enemy1.y);
                     if (this.y > 440){
                         this.y = 440;
                     }
@@ -84,13 +88,19 @@ const Player = function (){
 
 // Now instantiate your objects.
 let enemy1 = new Enemy();
+enemy1.x=20;
+enemy1.y=50;
 console.log(enemy1);
 // enemy1.sprite = 'images/enemy-bug.png';
 // enemy1.render();
 let enemy2 = new Enemy();
 console.log(enemy2);
+enemy2.x=50;
+enemy2.y=150;
 // enemy2.render();
 let enemy3 = new Enemy();
+enemy3.x=100;
+enemy3.y=250;
 console.log(enemy3);
 // enemy3.render();
 
