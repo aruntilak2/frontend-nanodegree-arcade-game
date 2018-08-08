@@ -23,8 +23,8 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Enemy.prototype.handleInput = function(dt) {
-};
+// Enemy.prototype.handleInput = function(dt) {
+// };
 
 
 
@@ -34,57 +34,68 @@ Enemy.prototype.handleInput = function(dt) {
 
 const Player = function (){
     this.sprite = 'images/char-boy.png';
-    this.x = 200;
-    this.y = 400;
+    this.x = 0;
+    this.y = 440;
    };
    Player.prototype.update =function(dt){ 
    };
    Player.prototype.render =function(){
        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
    };
-   Player.prototype.handleInput = function(dt) {
-       console.log(dt);
-       if (dt == "left"){
-           this.x -=101;           
-       }
-       else if (dt == "right"){
-        this.x +=101;  
-       }
-       else if ( dt == "up"){
-           this.y -= 100;
-       }
-       else {
-           this.y +=100;
-       }
-    //    switch (dt) {
-    //     case 'left':
-    //       this.x >= this.h_step ? this.x -= this.h_step : this.x -= 20;
-    //       break;
-    //     case 'right':
-    //       this.x <= (this.h_step * 3) ? this.x += this.h_step : this.x += 20;
-    //       break;
-    //     case 'up':
-    //       this.y -= this.v_step;
-    //       if(this.y <= 50) {
-    //         console.log('win!');
-    //         this.x = 202;
-    //         this.y = 404;
-    //       }
-    //       break;
-    //     case 'down':
-    //       this.y <= (this.v_step * 4) ? this.y += this.v_step : this.y += 0;
-    //       break;
-    //   }
+   Player.prototype.handleInput = function(direction) {
+       console.log(direction);
+   
+        if (this.x >= 0 && this.x <= 505 ){
+            if (direction == "left" && this.x >= -101)
+            {
+                this.x -=101;   
+                console.log (this.x); 
+                if (this.x <100){
+                    this.x=0;
+                }
+                
+            }
+            else if (direction == "right"&& this.x <= 505){
+                this.x +=101;  
+                console.log (this.x);  
+                if (this.x > 404){
+                    this.x=404;
+                }
+            }
+            else if ( direction == "up" && this.y >= -101){
+                this.y -= 100;
+                console.log (this.y);  
+                if (this.y < -60){
+                    this.y= -60;
+                }
+            }
+            else {
+                // if (direction == "down" && this.y <= 101){
+                    this.y += 100;
+                    console.log (this.y);
+                    if (this.y > 440){
+                        this.y = 440;
+                    }
+                //   }
+            }
+        }
 };
 
 
 // Now instantiate your objects.
-var enemy1 = new Enemy();
-var enemy2 = new Enemy();
-var enemy3 = new Enemy();
+let enemy1 = new Enemy();
+console.log(enemy1);
+// enemy1.sprite = 'images/enemy-bug.png';
+// enemy1.render();
+let enemy2 = new Enemy();
+console.log(enemy2);
+// enemy2.render();
+let enemy3 = new Enemy();
+console.log(enemy3);
+// enemy3.render();
 
 // Place all enemy objects in an array called allEnemies
-var enemy = new Enemy;
+// var enemy = new Enemy;
 // var allEnemies = [new Enemy()];
 var allEnemies = [enemy1, enemy2, enemy3];
 // allEnemies.render();
