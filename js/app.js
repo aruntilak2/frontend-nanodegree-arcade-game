@@ -18,6 +18,12 @@ var Enemy = function() {
     // all computers.
     let speed;
     let distance = speed*dt;
+    if (this.x >= 0 && this.x <= 505) {
+      this.x+=200*dt;  
+    }
+    else {
+      this.x=0;
+    }
     
   };
   
@@ -36,7 +42,7 @@ var Enemy = function() {
   const Player = function() {
     this.sprite = "images/char-boy.png";
     this.x = 200;
-    this.y = 440;
+    this.y = 400;
   };
   Player.prototype.update = function(dt) {};
   Player.prototype.render = function() {
@@ -61,7 +67,7 @@ var Enemy = function() {
           this.x = 404;
         }
       } else if (direction == "up" && this.y >= -101) {
-        this.y -= 100;
+        this.y -=83 ;
         console.log("Player at = " + this.y);
         console.log("Enemy X = " + enemy1.x, ", Enemy Y= " + enemy1.y);
         if (this.y < -60) {
@@ -69,7 +75,7 @@ var Enemy = function() {
         }
       } else {
         // if (direction == "down" && this.y <= 101){
-        this.y += 100;
+        this.y += 83;
         console.log("Player at = " + this.y);
         console.log("Enemy X = " + enemy1.x, ", Enemy Y= " + enemy1.y);
         if (this.y > 440) {
@@ -102,7 +108,10 @@ var Enemy = function() {
   // Place all enemy objects in an array called allEnemies
   // var enemy = new Enemy;
   // var allEnemies = [new Enemy()];
-  var allEnemies = [enemy1, enemy2, enemy3];  
+  let allEnemies =[];
+
+  // var allEnemies = [enemy1, enemy2, enemy3];  
+  allEnemies.push(enemy1, enemy2,enemy3);
   console.log(allEnemies);
   // Place the player object in a variable called player
   var player = new Player();
