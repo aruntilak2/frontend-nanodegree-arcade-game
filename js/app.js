@@ -16,13 +16,13 @@ var Enemy = function() {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    let speed;
-    let distance = speed*dt;
-    if (this.x >= 0 && this.x <= 505) {
+    // let speed;
+    // let distance = speed*dt;
+    if (this.x >= -101 && this.x <= 505) {
       this.x+=200*dt;  
     }
     else {
-      this.x=0;
+      this.x=-101;
     }
     
   };
