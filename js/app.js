@@ -19,7 +19,13 @@ var Enemy = function() {
     // let speed;
     // let distance = speed*dt;
     if (this.x >= -101 && this.x <= 505) {
-      this.x+=200*dt;  
+      this.x+=400*dt;  
+      if (this.y> 40 && this.y <=140){
+        this.x+=300*dt;
+      }
+      if (this.y> 140 && this.y <=220){
+        this.x+=200*dt;
+      }
     }
     else {
       this.x=-101;
