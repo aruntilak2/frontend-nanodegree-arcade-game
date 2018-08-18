@@ -6,8 +6,12 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = "images/enemy-bug.png";
-    this.x;
-    this.y;
+    this.x=0;
+    this.y=55;
+    this.step =101;
+    this.jump=83;
+    this.speed=150;
+  
   };
   
   // Update the enemy's position, required method for game
@@ -19,13 +23,20 @@ var Enemy = function() {
     // let speed;
     // let distance = speed*dt;
     if (this.x >= -101 && this.x <= 505) {
-      this.x+=400*dt;  
-      if (this.y> 40 && this.y <=140){
-        this.x+=300*dt;
+      this.x+=((this.speed)*dt)*2;  
+      if (this.y>=55 && this.y <=83){
+        this.x+=((this.speed*dt)*3);
       }
-      if (this.y> 140 && this.y <=220){
+      if (this.y> 83 && this.y <=138){
+        this.x+=((this.speed*dt)*2);
+      }
+      if (this.y> 138 && this.y <=221){
+        this.x+=((this.speed*dt)*1);
+      }
+      if (this.y> 202 && this.y <=304){
         this.x+=200*dt;
       }
+      
     }
     else {
       this.x=-101;
@@ -47,10 +58,33 @@ var Enemy = function() {
   
   const Player = function() {
     this.sprite = "images/char-boy.png";
-    this.x = 200;
-    this.y = 400;
+    this.x = 0;
+    this.y = 0;
+    this.step=101;
+    this.jump=83;
+    this.startX= this.step*2;
+    this.startY=(this.jump*4)+55;
+    this.x=this.startX;
+    this.y=this.startY;
+    
+
   };
-  Player.prototype.update = function(dt) {};
+  Player.prototype.update = function(dt) {
+    for (let enemy of allEnemies){
+      if (this.y=== enemy.y && (enemy.x+enemy.step/2> this.x&& enemy.x<this.x+this.step/2)){
+        // alert("Collide")
+        this.reset();
+      }
+    }
+    if (this.y === 55){
+      alert("Congrats")
+    }
+    // win.requestAnimationFrame(main);
+  }
+  Player.prototype.reset = function (){
+    this.x=this.startX;
+    this.y=this.startY;
+    }
   Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   };
@@ -94,20 +128,21 @@ var Enemy = function() {
   
   // Now instantiate your objects.
   let enemy1 = new Enemy();
-  enemy1.x = 20;
-  enemy1.y = 50;
-  console.log(enemy1);
+  // enemy1.x = 20;
+  enemy1.y = 55;
+  // console.log(enemy1);
+  
   // enemy1.sprite = 'images/enemy-bug.png';
   // enemy1.render();
   let enemy2 = new Enemy();
-  enemy2.x = 50;
-  enemy2.y = 150;
+  // enemy2.x = 50;
+  enemy2.y = 55+83;
   console.log(enemy2);
   
   // enemy2.render();
   let enemy3 = new Enemy();
-  enemy3.x = 100;
-  enemy3.y = 250;
+  // enemy3.x = 100;
+  enemy3.y = 55+166;
   console.log(enemy3);
   // enemy3.render();
   
@@ -121,6 +156,9 @@ var Enemy = function() {
   console.log(allEnemies);
   // Place the player object in a variable called player
   var player = new Player();
+  if (enemy1.x== player.x && enemy1.y==player.y){
+    console.log("collide")
+  }
   
   // This listens for key presses and sends the keys to your
   // Player.handleInput() method. You don't need to modify this.
